@@ -10,26 +10,39 @@
 </head>
 <body>
     <div class="sample">
-        <div class="forma" v-show="!showTable">
-            <label for="email">Email:</label> <br>
-            <input type="email" id="email" v-model="email">
-            <hr>
-            <label for="firstName">First Name:</label> <br>
-            <input type="text" id="firstName" v-model="firstName">
-            <hr>
-            <label for="lastName">Last Name:</label> <br>
-            <input type="text" id="lastName" v-model="lastName">
-            <hr>
-            <label for="phone">Phone:</label> <br>
-            <input type="text" id="phone" v-model="phone">
-            <hr>
+        <div v-show="!showTable">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" v-model="email">
+            </div>
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" v-model="firstName">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" v-model="lastName">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" v-model="phone">
+            </div>
+
+            <div class="form-group">
             <label for="button">Guests</label>
             <button type="button" class="btn btn-primary" @click="addInput">+</button> 
+            </div>
+
             <ul class="list-group">
-                <li class="list-group-item" for="text" v-for="(guest, index) in guests">Guest {{ index + 1 }}<br>
-                        <input type="text" v-model="guests[index]"> 
+                <li class="list-group-item" for="text" v-for="(guest, index) in guests">
+                    <label @dblclick="deleteGuest(index)">
+                        Guest {{ index + 1 }}
+                    </label>
+                    <br>
+                    <input type="text" class="form-control" v-model="guests[index]"> 
                 </li>
             </ul> 
+
             <hr>
             <button class="btn btn-success" 
                     @click="showTable = !showTable"
@@ -89,7 +102,11 @@
             methods: {
                 addInput() {
                     this.guests.push(' ');
-                }
+                },
+
+                deleteGuest(index){
+                this.guests.splice(index, 1);
+            }
             }
         });
 

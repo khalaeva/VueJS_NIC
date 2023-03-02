@@ -1,11 +1,5 @@
 .wrapper{
 	padding: 15px;
-	max-width: 900px;
-}
-
-.forma {text-align: center }
-
-.table {
-	text-align: center;
-	width: 50%;
+	max-width: 500px;
+	margin: 0 auto;
 }
