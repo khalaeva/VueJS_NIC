@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>UnoShop</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    
-  </body>
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div class="sample">
+        <div class="forma" v-show="!showTable">
+            <label for="email">Email:</label> <br>
+            <input type="email" id="email" v-model="email">
+            <hr>
+            <label for="firstName">First Name:</label> <br>
+            <input type="text" id="firstName" v-model="firstName">
+            <hr>
+            <label for="lastName">Last Name:</label> <br>
+            <input type="text" id="lastName" v-model="lastName">
+            <hr>
+            <label for="phone">Phone:</label> <br>
+            <input type="text" id="phone" v-model="phone">
+            <hr>
+            <label fro="button">Guests</label>
+            <button type="button" class="btn btn-primary" @click="addInput">+</button> 
+            <ul class="list-group">
+                <li class="list-group-item" for="text" v-for="(guest, index) in guests">Guest {{ index + 1 }}<br>
+                        <input type="text" v-model="guests[index]"> 
+                </li>
+            </ul> 
+            <hr>
+            <button class="btn btn-success" 
+                    @click="showTable = !showTable"
+                    >
+                    Send Data
+            </button>
+        </div>
+
+        <div v-show="showTable">
+            <h2>All done!</h2>
+            <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th>Email</th>
+                    <td>{{ email }}</td>
+                  </tr>
+                  <tr>
+                    <th>Name</th>
+                    <td>{{ fullName }}</td>
+                  </tr>
+                  <tr>
+                    <th>Phone</th>
+                    <td>{{ phone }}</td>
+                  </tr>
+                  <tr>
+                    <th>Guests</th>
+                    <td>
+                        <table class="table table-bordered">
+                            <tr v-for="guest in guests">
+                                <td>{{ guest }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        let sample = new Vue({
+            el: '.sample',
+            data: {
+                guests: [],
+                email: '',
+                firstName: '',
+                lastName: '',
+                phone: '',
+                showTable: false, 
+            },
+            computed: {
+                fullName() {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            methods: {
+                addInput() {
+                    this.guests.push(' ');
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
