@@ -10,78 +10,78 @@
     <script src="js/vue.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="sample">
-            <form>
-        		<div class="progress">
-					<div class="progress-bar"></div>
-				</div>
-				<div>
-					<div class="form-group">
-	                    <label>{{ info[0].name }}</label>
-						<input type="text" class="form-control" v-model="info[0].value">
-	                </div>
-				</div>
-				<div>
-					<div class="form-group">
-	                    <label>{{ info[1].name }}</label>
-	                    <input type="text" class="form-control" v-model="info[1].value">
-	                </div>
-				</div>
-				<div>
-					<div class="form-group">
-	                    <label>{{ info[2].name }}</label>
-	                    <input type="text" class="form-control" v-model="info[2].value">
-	                </div>
-				</div>
-				<div>
-					<div class="form-group">
-	                    <label>{{ info[3].name }}</label>
-	                    <input type="text" class="form-control" v-model="info[3].value">
-	                </div>
-				</div>
-				<div>
-					<div class="form-group">
-	                    <label>{{ info[4].name }}</label>
-	                    <input type="text" class="form-control" v-model="info[4].value">
-	                </div>
-				</div>
-				<button class="btn btn-primary">
-					Send Data
-				</button>
-			</form>
-			<br>
-			<div>
-				<table class="table table-bordered">
-					<tr>
-						<th>{{ info[0].name }}</th>
-						<td>{{ info[0].value }}</td>
-					</tr>
-					<tr>
-						<th>{{ info[1].name }}</th>
-						<td>{{ info[1].value }}</td>
-					</tr>
-					<tr>
-						<th>{{ info[2].name }}</th>
-						<td>{{ info[2].value }}</td>
-					</tr>
-					<tr>
-						<th>{{ info[3].name }}</th>
-						<td>{{ info[3].value }}</td>
-					</tr>
-					<tr>
-						<th>{{ info[4].name }}</th>
-						<td>{{ info[4].value }}</td>
-					</tr>
-				</table>
+<div class="wrapper">
+<div class="sample">
+	<form v-if="!formSubmited" @submit.prevent="formSubmited = true">
+		<div class="progress">
+			<div class="progress-bar"></div>
+		</div>
+		<div>
+			<div class="form-group">
+				<label>{{ info[0].name }}</label>
+				<input type="text" class="form-control" v-model="info[0].value">
 			</div>
 		</div>
-    </div>
+		<div>
+			<div class="form-group">
+				<label>{{ info[1].name }}</label>
+				<input type="text" class="form-control" v-model="info[1].value">
+			</div>
+		</div>
+		<div>
+			<div class="form-group">
+				<label>{{ info[2].name }}</label>
+				<input type="text" class="form-control" v-model="info[2].value">
+			</div>
+		</div>
+		<div>
+			<div class="form-group">
+				<label>{{ info[3].name }}</label>
+				<input type="text" class="form-control" v-model="info[3].value">
+			</div>
+		</div>
+		<div>
+			<div class="form-group">
+				<label>{{ info[4].name }}</label>
+				<input type="text" class="form-control" v-model="info[4].value">
+			</div>
+		</div>
+		<button class="btn btn-primary">
+			Send Data
+		</button>
+	</form>
+	<div v-else>
+		<table class="table table-bordered">
+			<tr>
+				<th>{{ info[0].name }}</th>
+				<td>{{ info[0].value }}</td>
+			</tr>
+			<tr>
+				<th>{{ info[1].name }}</th>
+				<td>{{ info[1].value }}</td>
+			</tr>
+			<tr>
+				<th>{{ info[2].name }}</th>
+				<td>{{ info[2].value }}</td>
+			</tr>
+			<tr>
+				<th>{{ info[3].name }}</th>
+				<td>{{ info[3].value }}</td>
+			</tr>
+			<tr>
+				<th>{{ info[4].name }}</th>
+				<td>{{ info[4].value }}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</div>
 	<script>
 		
 		new Vue({
 			el: '.sample',
 			data: {
+				formSubmited: false,
 				info: [
 					{
 						name: 'Name',
